@@ -214,5 +214,28 @@ marimo/_static/
 marimo/_lsp/
 __marimo__/
 
+
 # Streamlit
 .streamlit/secrets.toml
+
+# ============================================================
+# Sensor Fault Detection — Project Specific
+# ============================================================
+
+# ML Artifacts (generated at runtime — do NOT commit)
+artifacts/
+
+# Log files
+logs/
+
+# Prediction output folder
+predictions/
+prediction_artifact/
+
+# MongoDB data upload script output
+*.npy
+
+# Secrets / environment files
+.env
+*.env
+# (keep .env.example — it is intentionally committed as a template)

@@ -23,12 +23,12 @@ class DataIngestion:
     def export_collection_as_dataframe(self , collection_name , db_name):
         try:
             mongo_client = MongoClient(MONGO_DB_URL)
-            collection = mongo_client(db_name)[collection_name]
+            collection = mongo_client[db_name][collection_name]
             
             df = pd.DataFrame(list(collection.find()))
             
             if '_id' in df.columns.to_list():
-                df = df.drop(columns=['_id'] , axis= 1)
+                df = df.drop('_id', axis=1)
                 df.replace({'na':np.nan},inplace = True)
                 
                 return df

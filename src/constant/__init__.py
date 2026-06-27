@@ -1,13 +1,31 @@
 import os
 
-AWS_S3_BUCKET_NAME = "water-fault"
-MONGO_DATABASE_NAME = "sensor"
+# ---------------------------------------------------------------------------
+# Cloud / Storage
+# ---------------------------------------------------------------------------
+AWS_S3_BUCKET_NAME    = os.getenv("AWS_S3_BUCKET_NAME", "water-fault")
+
+# ---------------------------------------------------------------------------
+# MongoDB
+# ---------------------------------------------------------------------------
+MONGO_DATABASE_NAME   = "sensor"
 MONGO_COLLECTION_NAME = "waferfault"
+MONGO_DB_URL          = os.getenv("MONGO_DB_URL")
 
-TARGET_COLUMNS = 'quality'
-MONGO_DB_URL = ""
+if not MONGO_DB_URL:
+    raise EnvironmentError(
+        "MONGO_DB_URL environment variable is not set. "
+        "Please add it to your .env file or export it in your shell before running the app."
+    )
 
-MODEL_FILE_NAME = "model"
+# ---------------------------------------------------------------------------
+# Model
+# ---------------------------------------------------------------------------
+TARGET_COLUMNS      = "quality"
+MODEL_FILE_NAME     = "model"
 MODEL_FILE_EXTENSION = ".pkl"
 
-artifact_folder = 'artifacts'
+# ---------------------------------------------------------------------------
+# Artifact paths
+# ---------------------------------------------------------------------------
+artifact_folder = "artifacts"
